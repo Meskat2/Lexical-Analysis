@@ -3,23 +3,18 @@
 
 using namespace std;
 
-int isNumeric(char str[]) {
-    for (int i = 0; str[i] != '\0'; i++) {
-        if (!isdigit(str[i]))
-            return 0;
-    }
-    return 1;
-}
-
 int main() {
     char input[100];
-    printf("Enter input: ");
+    printf("Enter an expression: ");
     scanf("%s", input);
 
-    if (isNumeric(input))
-        printf("Numeric constant\n");
-    else
-        printf("Not numeric\n");
+    printf("Operators found:\n");
+    for (int i = 0; input[i] != '\0'; i++) {
+        if (input[i] == '+' || input[i] == '-' || input[i] == '*' ||
+            input[i] == '/' || input[i] == '%' || input[i] == '=') {
+            printf("Operator: %c\n", input[i]);
+        }
+    }
 
     return 0;
 }
