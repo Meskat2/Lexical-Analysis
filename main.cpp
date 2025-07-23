@@ -3,25 +3,27 @@
 
 using namespace std;
 
-int main() {
-    char input[200];
-    printf("Enter a line: ");
-    fgets(input, sizeof(input), stdin);
+int isIdentifier(char str[]) {
+    if (!isalpha(str[0]) && str[0] != '_')
+        return 0;
 
-    if (input[0] == '/' && input[1] == '/') {
-        printf("Single line comment\n");
+    for (int i = 1; str[i] != '\0'; i++) {
+        if (!isalnum(str[i]) && str[i] != '_')
+            return 0;
     }
-    else if (input[0] == '/' && input[1] == '*') {
-        int len = strlen(input);
-        if (input[len - 3] == '*' && input[len - 2] == '/') {
-            printf("Multi-line comment\n");
-        } else {
-            printf("Possibly part of a multi-line comment\n");
-        }
-    }
-    else {
-        printf("Not a comment\n");
-    }
+
+    return 1;
+}
+
+int main() {
+    char input[100];
+    printf("Enter identifier: ");
+    scanf("%s", input);
+
+    if (isIdentifier(input))
+        printf("Valid Identifier\n");
+    else
+        printf("Not a valid Identifier\n");
 
     return 0;
 }
